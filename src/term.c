@@ -7,6 +7,7 @@
 
 #include "term.h"
 
+fd_set fds;
 static struct termios orig, new;
 
 void
@@ -24,5 +25,25 @@ nonblock()
 	atexit(reset_terminal_mode);
 	cfmakeraw(&new);
 	tcsetattr(STDIN_FILENO, TCSANOW, &new);
+}
+
+int
+kbhit()
+{
+	struct timeval tv = { 0L, 0L };
+
+	FD_ZERO(&fds);
+	FD_SET(STDIN_FILENO, &fds);
+	select(STDIN_FILENO + 1, &fds, NULL, NULL, &tv);
+
+	return FD_ISSET(STDIN_FILENO, &fds);
+}
+
+void
+reset_input()
+{
+	unsigned char c;
+
+	read(0, &c, sizeof(c));
 }
 

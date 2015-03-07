@@ -15,5 +15,16 @@ void nonblock();
  */
 void reset_terminal_mode();
 
+/*
+ * Figure out whether we hit a key.
+ */
+int kbhit();
+
+/*
+ * Reset the input status after we have received input, so kbhit()
+ * return false again.
+ */
+void reset_input();
+
 #endif
 

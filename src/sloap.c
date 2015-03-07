@@ -17,6 +17,12 @@ main()
 	time(&start);
 
 	for (;;) {
+		if (kbhit()) {
+			puts("Timer has been reset\r");
+			reset_input();
+			time(&start);
+		}
+
 		time(&now);
 
 		if (difftime(now, start) > threshold)
