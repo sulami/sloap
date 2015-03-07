@@ -39,11 +39,16 @@ kbhit()
 	return FD_ISSET(STDIN_FILENO, &fds);
 }
 
-void
+int
 reset_input()
 {
+	int r;
 	unsigned char c;
 
-	read(0, &c, sizeof(c));
+	if ((r = read(0, &c, sizeof(c))) < 0) {
+		return r;
+	} else {
+		return c;
+	}
 }
 

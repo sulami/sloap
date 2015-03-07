@@ -18,8 +18,14 @@ main()
 
 	for (;;) {
 		if (kbhit()) {
+			if (reset_input() == 113) {
+				/* 'q', not going to include keysyms here. */
+				puts("SLOAP exited.\r");
+
+				return 0;
+			}
+
 			puts("Timer has been reset.\r");
-			reset_input();
 			time(&start);
 		}
 

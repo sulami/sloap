@@ -24,7 +24,7 @@ int kbhit();
  * Reset the input status after we have received input, so kbhit()
  * return false again.
  */
-void reset_input();
+int reset_input();
 
 #endif
 
