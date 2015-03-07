@@ -9,11 +9,12 @@
 int
 main(int argc, char *argv[])
 {
-	int opt;
+	int opt, argindex, i;
+	char **cmd;
 	time_t start, now;
 	double threshold = 900; /* 15 minutes by default. */
 
-	while ((opt = getopt(argc, argv, "ht:")) != -1) {
+	while ((opt = getopt(argc, argv, "+ht:")) != EOF) {
 		switch (opt) {
 		case 'h':
 			puts("Usage: %s [-t seconds] command");
@@ -29,9 +30,19 @@ main(int argc, char *argv[])
 		}
 	}
 
-	puts("SLOAP started.");
+	if (optind == argc)
+		puts("Warning: No command defined.");
+
+	cmd = malloc(sizeof(char *) * (argc - optind));
+	if (!cmd)
+		return EXIT_FAILURE;
+
+	for (argindex = optind, i = 0; argindex < argc; argindex++, i++)
+		cmd[i] = argv[argindex];
 
 	nonblock();
+
+	puts("SLOAP started.\r");
 
 	time(&start);
 
@@ -57,6 +68,7 @@ main(int argc, char *argv[])
 	}
 
 	puts("Wakeup time!\r");
+	execvp(cmd[0], cmd);
 
 	return EXIT_SUCCESS;
 }
