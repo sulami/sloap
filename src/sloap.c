@@ -2,6 +2,8 @@
 #include <time.h>
 #include <unistd.h>
 
+#include "term.h"
+
 int
 main()
 {
@@ -9,6 +11,8 @@ main()
 	time_t start, now;
 
 	puts("SLOAP started.");
+
+	nonblock();
 
 	time(&start);
 

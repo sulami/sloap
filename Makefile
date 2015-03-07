@@ -7,12 +7,13 @@ BINDIR ?= $(PREFIX)/bin
 
 CC = gcc
 CFLAGS += -std=c99 -pedantic -Wall -Wextra -Werror \
-          -Wimplicit-function-declaration -Wno-main -Wno-uninitialized
+          -Wimplicit-function-declaration -Wno-main -Wno-uninitialized \
+	  -D _DEFAULT_SOURCE
 LDFLAGS += 
 
 SRCDIR = src
 SRC = $(SRCDIR)/$(PROJECT).c
-OBJ = 
+OBJ = term.o
 
 ifeq ($(DEBUG),0)
     CFLAGS  += -O2
