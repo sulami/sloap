@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <time.h>
+#include <unistd.h>
 
 int
 main()
@@ -16,6 +17,8 @@ main()
 
 		if (difftime(now, start) > threshold)
 			break;
+
+		sleep(1); /* be nice to the cpu */
 	}
 
 	puts("Wakeup time!");
