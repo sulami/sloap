@@ -18,7 +18,7 @@ main()
 
 	for (;;) {
 		if (kbhit()) {
-			puts("Timer has been reset\r");
+			puts("Timer has been reset.\r");
 			reset_input();
 			time(&start);
 		}
@@ -31,7 +31,7 @@ main()
 		sleep(1); /* be nice to the cpu */
 	}
 
-	puts("Wakeup time!");
+	puts("Wakeup time!\r");
 
 	return 0;
 }
