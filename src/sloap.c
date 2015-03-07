@@ -3,10 +3,10 @@
 int
 main()
 {
-    puts("SLOAP started.");
+	puts("SLOAP started.");
 
-    puts("SLOAP exited.");
+	puts("SLOAP exited.");
 
-    return 0;
+	return 0;
 }
 
