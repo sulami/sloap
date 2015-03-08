@@ -68,6 +68,9 @@ main(int argc, char *argv[])
 	}
 
 	puts("Wakeup time!\r");
+
+	reset_terminal_mode();
+
 	execvp(cmd[0], cmd);
 
 	return EXIT_SUCCESS;
