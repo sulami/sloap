@@ -33,7 +33,7 @@ main(int argc, char *argv[])
 	if (optind == argc)
 		puts("Warning: No command defined.");
 
-	cmd = malloc(sizeof(char *) * (argc - optind));
+	cmd = malloc(sizeof(char *) * (1 + argc - optind));
 	if (!cmd)
 		return EXIT_FAILURE;
 
